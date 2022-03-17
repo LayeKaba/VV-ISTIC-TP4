@@ -1,8 +1,11 @@
 package fr.istic.vv;
+import java.util.Arrays;
+
 import net.jqwik.api.*;
 
 public class SortingTest {
     @Property
+    @Disabled
     boolean absoluteValueOfAllNumbersIsPositive(@ForAll int anInteger) {
         return Math.abs(anInteger) >= 0;
     }
@@ -10,7 +13,7 @@ public class SortingTest {
     @Property
     boolean arrayIsSorted(@ForAll Integer[] anArray) {
 
-        Integer[] bubbleCopy,quickCopy,mergeCopy;
+        Integer[] triBulle, triRapide, triFusion;
         triBulle = anArray.clone();
         triRapide = anArray.clone();
         triFusion = anArray.clone();
