@@ -20,10 +20,6 @@ public class RomanNumeralTest {
 
     @Property
     boolean symbolesNombresRomains(@ForAll String string) {
-        if (RomanNumeraUtils.isValidRomanNumeral(string)){
-            return string.matches("^[MDCLXVI]+$");
-        }else{
-            return !RomanNumeraUtils.isValidRomanNumeral(string);
-        }
+        return string.matches("^[MDCLXVI]+$") ^ !RomanNumeraUtils.isValidRomanNumeral(string);
     }
 }
