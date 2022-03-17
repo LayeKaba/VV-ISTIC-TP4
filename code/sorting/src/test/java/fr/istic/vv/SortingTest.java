@@ -11,24 +11,44 @@ public class SortingTest {
     }
     
     @Property
-    boolean arrayIsSorted(@ForAll Integer[] anArray) {
-
-        Integer[] triBulle, triRapide, triFusion;
+    boolean bulleSorted(@ForAll Integer[] anArray) {
+    	Integer[] triBulle;
         triBulle = anArray.clone();
-        triRapide = anArray.clone();
-        triFusion = anArray.clone();
         Arrays.sort(anArray);
-
+        
         Sorting.bubblesort(triBulle, Integer::compareTo);
         boolean triBulleResultat = Arrays.equals(triBulle, anArray);
 
+        
+        return triBulleResultat;
+    }
+    
+    @Property
+    boolean rapideSorted(@ForAll Integer[] anArray) {
+    	Integer[] triRapide;
+        triRapide = anArray.clone();
+        
+        Arrays.sort(anArray);
+        
+        
         Sorting.quicksort(triRapide, Integer::compareTo);
         boolean triRapideResultat = Arrays.equals(triRapide, anArray);
 
+       
+        return triRapideResultat ;
+    }
+    @Property
+    boolean fusionSorted(@ForAll Integer[] anArray) {
+
+        Integer[] triFusion;
+         triFusion = anArray.clone();
+        Arrays.sort(anArray);
+
+        
         Sorting.mergesort(triFusion, Integer::compareTo);
         boolean triFusionResultat = Arrays.equals(triFusion, anArray);
 
-        return triBulleResultat && triRapideResultat && triFusionResultat;
+        return triFusionResultat;
     }
      @Provide
     Arbitrary<Integer[]> ArrProvider() {
